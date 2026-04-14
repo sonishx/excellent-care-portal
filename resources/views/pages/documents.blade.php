@@ -4,442 +4,291 @@
 
 @section('content')
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f7fb;
-    }
+/* Page-specific CSS for Documents page */
+.documents-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
 
-    .documents-page {
-        min-height: 100vh;
-        background: #f5f7fb;
-    }
+.documents-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
 
-    .top-header {
-        height: 72px;
-        background: #ffffff;
-        border-bottom: 1px solid #edf1f5;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 35px;
-    }
+.breadcrumb {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
 
-    .brand-area {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+.page-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 22px;
+}
 
-    .brand-logo-circle {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #6f2dbd;
-        color: white;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        text-align: center;
-        line-height: 1.1;
-    }
+.page-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+}
 
-    .brand-provider {
-        font-size: 10px;
-        color: #6b7280;
-        line-height: 1.2;
-    }
+.page-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+}
 
-    .brand-main {
-        font-size: 20px;
-        font-weight: 700;
-        color: #f45d75;
-    }
+.secure-note {
+    font-size: 13px;
+    color: #16a34a;
+    margin-top: 8px;
+}
 
-    .brand-main span {
-        font-size: 13px;
-        color: #f28c52;
-        font-weight: 600;
-        margin-left: 2px;
-    }
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
 
-    .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        margin-left: 35px;
-    }
+.panel {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
 
-    .nav-links a {
-        text-decoration: none;
-        font-size: 14px;
-        color: #4b5563;
-        font-weight: 500;
-    }
+.drop-zone {
+    border: 2px dashed #d7dee8;
+    border-radius: 14px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 18px;
+    background: #fcfdff;
+}
 
-    .nav-links a.active {
-        color: #2563eb;
-        font-weight: 700;
-    }
+.drop-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 14px;
+}
 
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-    }
+.browse-btn {
+    margin-top: 14px;
+    background: #eef4ff;
+    color: #2563eb;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+}
 
-    .search-box {
-        width: 190px;
-        height: 40px;
-        border: 1px solid #dbe2ea;
-        border-radius: 10px;
-        padding: 0 14px;
-        font-size: 13px;
-        background: #fff;
-    }
+.tab-filter-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
 
-    .user-circle {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: #f3f4f6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-    }
+.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
-    .documents-container {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 0 20px;
-    }
+.tab-btn {
+    border: 1px solid #dbe2ea;
+    background: white;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #4b5563;
+}
 
-    .breadcrumb {
-        font-size: 13px;
-        color: #9ca3af;
-        margin-bottom: 8px;
-    }
+.tab-btn.active {
+    background: #1f6ef2;
+    color: white;
+    border-color: #1f6ef2;
+}
 
-    .page-title-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-bottom: 22px;
-    }
+.filter-box {
+    width: 220px;
+    height: 38px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 0 12px;
+    font-size: 13px;
+}
 
-    .page-title {
-        font-size: 34px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 6px;
-    }
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-    .page-subtitle {
-        font-size: 14px;
-        color: #6b7280;
-    }
+.file-table th,
+.file-table td {
+    padding: 14px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eef2f7;
+    text-align: left;
+    vertical-align: middle;
+}
 
-    .secure-note {
-        font-size: 13px;
-        color: #16a34a;
-        margin-top: 8px;
-    }
+.file-table th {
+    color: #6b7280;
+    font-size: 12px;
+    text-transform: uppercase;
+}
 
+.file-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.file-sub {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.side-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+    margin-bottom: 18px;
+}
+
+.side-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.status-item {
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.status-item:last-child {
+    margin-bottom: 0;
+}
+
+.status-green {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.status-blue {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.storage-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+    margin: 10px 0 14px;
+}
+
+.storage-fill {
+    width: 48%;
+    height: 100%;
+    background: #2563eb;
+}
+
+.storage-item {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+
+.upgrade-btn {
+    width: 100%;
+    border: 1px solid #dbe2ea;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-top: 10px;
+}
+
+.flash-success {
+    background: #ecfdf3;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.error-text {
+    color: #dc2626;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.action-btn {
+    display: inline-block;
+    margin-right: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #2563eb;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.delete-btn {
+    color: #ef4444;
+}
+
+@media (max-width: 992px) {
     .content-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
-        align-items: start;
+        grid-template-columns: 1fr;
     }
-
-    .panel {
-        background: white;
-        border-radius: 14px;
-        padding: 20px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-    }
-
-    .drop-zone {
-        border: 2px dashed #d7dee8;
-        border-radius: 14px;
-        padding: 30px 20px;
-        text-align: center;
-        margin-bottom: 18px;
-        background: #fcfdff;
-    }
-
-    .drop-icon {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        background: #eaf2ff;
-        color: #2563eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        margin: 0 auto 14px;
-    }
-
-    .browse-btn {
-        margin-top: 14px;
-        background: #eef4ff;
-        color: #2563eb;
-        border: none;
-        border-radius: 8px;
-        padding: 10px 16px;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    .tab-filter-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 16px;
-    }
-
-    .tabs {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-
-    .tab-btn {
-        border: 1px solid #dbe2ea;
-        background: white;
-        border-radius: 999px;
-        padding: 8px 14px;
-        font-size: 12px;
-        color: #4b5563;
-    }
-
-    .tab-btn.active {
-        background: #1f6ef2;
-        color: white;
-        border-color: #1f6ef2;
-    }
-
-    .filter-box {
-        width: 220px;
-        height: 38px;
-        border: 1px solid #dbe2ea;
-        border-radius: 10px;
-        padding: 0 12px;
-        font-size: 13px;
-    }
-
-    .file-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .file-table th,
-    .file-table td {
-        padding: 14px 10px;
-        font-size: 13px;
-        border-bottom: 1px solid #eef2f7;
-        text-align: left;
-        vertical-align: middle;
-    }
-
-    .file-table th {
-        color: #6b7280;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-
-    .file-name {
-        font-weight: 600;
-        color: #111827;
-    }
-
-    .file-sub {
-        font-size: 11px;
-        color: #9ca3af;
-    }
-
-    .side-card {
-        background: white;
-        border-radius: 14px;
-        padding: 18px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-        margin-bottom: 18px;
-    }
-
-    .side-title {
-        font-size: 15px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 12px;
-    }
-
-    .status-item {
-        font-size: 13px;
-        margin-bottom: 12px;
-    }
-
-    .status-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .status-green {
-        color: #16a34a;
-        font-weight: 600;
-    }
-
-    .status-blue {
-        color: #2563eb;
-        font-weight: 600;
-    }
-
-    .storage-bar {
-        height: 10px;
-        border-radius: 999px;
-        background: #e5e7eb;
-        overflow: hidden;
-        margin: 10px 0 14px;
-    }
-
-    .storage-fill {
-        width: 48%;
-        height: 100%;
-        background: #2563eb;
-    }
-
-    .storage-item {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 6px;
-    }
-
-    .upgrade-btn {
-        width: 100%;
-        border: 1px solid #dbe2ea;
-        background: white;
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #2563eb;
-        margin-top: 10px;
-    }
-
-    .flash-success {
-        background: #ecfdf3;
-        border: 1px solid #bbf7d0;
-        color: #15803d;
-        border-radius: 10px;
-        padding: 14px 16px;
-        font-size: 13px;
-        margin-bottom: 20px;
-    }
-
-    .error-text {
-        color: #dc2626;
-        font-size: 12px;
-        margin-top: 8px;
-    }
-
-    .action-btn {
-        display: inline-block;
-        margin-right: 6px;
-        text-decoration: none;
-        font-size: 12px;
-        color: #2563eb;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-    }
-
-    .delete-btn {
-        color: #ef4444;
-    }
-
-    @media (max-width: 992px) {
-        .content-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .top-header {
-            flex-direction: column;
-            height: auto;
-            padding: 15px;
-            gap: 12px;
-        }
-
-        .nav-links {
-            margin-left: 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .header-right {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-    }
+}
 </style>
 
 <div class="documents-page">
-    <div class="top-header">
-        <div class="d-flex align-items-center">
-            <div class="brand-area">
-                <div class="brand-logo-circle">We<br>ndis</div>
-                <div class="brand-provider">
-                    Registered<br>NDIS Provider
-                </div>
-                <div class="brand-main">
-                    excellent<span>Care Services</span>
-                </div>
-            </div>
-
-            <div class="nav-links">
-                <a href="/dashboard">Dashboard</a>
-                <a href="#">Clients</a>
-                <a href="#">Roster</a>
-                <a href="/documents" class="active">Documents</a>
-                <a href="#">Reports</a>
-            </div>
-        </div>
-
-        <div class="header-right">
-            <input type="text" class="search-box" placeholder="Search">
-            <div class="user-circle">👩</div>
-        </div>
-    </div>
-
     <div class="documents-container">
-        <div class="breadcrumb">Home &nbsp; / &nbsp; My Portal &nbsp; / &nbsp; Documents &amp; Media</div>
+        <div class="breadcrumb">Home &nbsp; / &nbsp; My Portal &nbsp; / &nbsp; Documents & Media</div>
 
         <div class="page-title-row">
             <div>
-                <div class="page-title">Documents &amp; Media</div>
-                <div class="page-subtitle">
-                    Manage uploaded NDIS plans, medical reports, and secure documentation.
-                </div>
-                <div class="secure-note">● HIPAA &amp; Privacy Act Compliant Storage</div>
+                <div class="page-title">Documents & Media</div>
+                <div class="page-subtitle">Manage uploaded NDIS plans, medical reports, and secure documentation.</div>
+                <div class="secure-note">● HIPAA & Privacy Act Compliant Storage</div>
             </div>
         </div>
 
         @if(session('success'))
-            <div class="flash-success">
-                {{ session('success') }}
-            </div>
+            <div class="flash-success">{{ session('success') }}</div>
         @endif
 
         <div class="content-grid">
             <div class="panel">
                 <form method="POST" action="{{ route('documents.store') }}" enctype="multipart/form-data">
                     @csrf
-
                     <div class="drop-zone">
                         <div class="drop-icon">📄</div>
                         <div class="fw-semibold mb-1">Upload a document</div>
@@ -488,7 +337,6 @@
                                 <td>{{ $document->file_size }}</td>
                                 <td>
                                     <a href="{{ route('documents.download', $document->id) }}" class="action-btn">Download</a>
-
                                     <form method="POST" action="{{ route('documents.delete', $document->id) }}" style="display:inline;">
                                         @csrf
                                         <button type="submit" class="action-btn delete-btn">Delete</button>
@@ -507,7 +355,6 @@
             <div>
                 <div class="side-card">
                     <div class="side-title">Upload Status</div>
-
                     <div class="status-item">
                         <strong>Current session upload</strong><br>
                         <span class="text-muted">Uploaded files will appear in the table instantly after saving.</span><br>

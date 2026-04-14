@@ -4,100 +4,10 @@
 
 @section('content')
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f7fb;
-    }
-
+    /* Page-specific CSS not in master layout */
     .settings-page {
         min-height: 100vh;
         background: #f5f7fb;
-    }
-
-    .top-header {
-        height: 72px;
-        background: #ffffff;
-        border-bottom: 1px solid #edf1f5;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 32px;
-    }
-
-    .brand-wrap {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .brand-logo {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: #6f2dbd;
-        color: white;
-        font-size: 11px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        line-height: 1.05;
-    }
-
-    .brand-provider {
-        font-size: 9px;
-        color: #7c8796;
-        line-height: 1.2;
-    }
-
-    .brand-name {
-        font-size: 14px;
-        font-weight: 700;
-        color: #f45d75;
-    }
-
-    .brand-name span {
-        color: #f28c52;
-        font-size: 11px;
-        font-weight: 600;
-        margin-left: 2px;
-    }
-
-    .top-nav {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        margin-left: 28px;
-    }
-
-    .top-nav a {
-        text-decoration: none;
-        color: #4b5563;
-        font-size: 14px;
-    }
-
-    .top-nav a.active {
-        color: #2563eb;
-        font-weight: 700;
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .icon-circle {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: #f3f4f6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 13px;
     }
 
     .settings-content {
@@ -151,15 +61,6 @@
 
     .logout-wrap {
         padding: 14px 22px 0;
-    }
-
-    .logout-btn {
-        background: none;
-        border: none;
-        color: #ef4444;
-        font-size: 13px;
-        padding: 0;
-        cursor: pointer;
     }
 
     .content-area {
@@ -312,95 +213,6 @@
         left: 25px;
     }
 
-    .form-label {
-        font-size: 13px;
-        font-weight: 600;
-        color: #374151;
-        margin-bottom: 8px;
-    }
-
-    .form-select {
-        height: 46px;
-        border-radius: 10px;
-        border: 1px solid #dbe2ea;
-        font-size: 14px;
-        box-shadow: none !important;
-        background: white;
-    }
-
-    .range-row {
-        margin-bottom: 24px;
-    }
-
-    .range-value {
-        font-size: 14px;
-        color: #6b7280;
-        margin-top: 8px;
-    }
-
-    .field-error {
-        color: #dc2626;
-        font-size: 12px;
-        margin-top: 4px;
-    }
-
-    .security-card {
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 22px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-    }
-
-    .security-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 0;
-        border-bottom: 1px solid #eef2f7;
-    }
-
-    .security-item:last-child {
-        border-bottom: none;
-    }
-
-    .security-left strong {
-        display: block;
-        font-size: 14px;
-        color: #111827;
-        margin-bottom: 4px;
-    }
-
-    .security-left span {
-        font-size: 13px;
-        color: #6b7280;
-    }
-
-    .btn-light {
-        background: white;
-        color: #374151;
-        border: 1px solid #dbe2ea;
-        border-radius: 10px;
-        padding: 10px 16px;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    .btn-danger-light {
-        background: white;
-        color: #ef4444;
-        border: 1px solid #dbe2ea;
-        border-radius: 10px;
-        padding: 10px 16px;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    .btn-row {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 16px;
-    }
-
     @media (max-width: 1024px) {
         .page-layout {
             grid-template-columns: 1fr;
@@ -410,51 +222,104 @@
             grid-template-columns: 1fr;
         }
     }
+    .btn-light {
+    background: white;
+    color: #374151;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
 
-    @media (max-width: 768px) {
-        .top-header {
-            flex-direction: column;
-            height: auto;
-            padding: 16px;
-            gap: 12px;
-        }
+.btn-danger-light {
+    background: white;
+    color: #ef4444;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* Buttons for toggle/action consistency */
+.form-range {
+    width: 100%;
+    accent-color: #2563eb;
+    margin-top: 6px;
+}
 
-        .settings-content {
-            padding: 20px 16px 28px;
-        }
+.range-value {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 4px;
+}
 
-        .top-profile-card {
-            flex-direction: column;
-            align-items: flex-start;
-        }
+/* Security Card */
+.security-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Security item button styling */
+.btn-light, .btn-danger-light, .btn-light-blue {
+    transition: all 0.2s ease;
+}
+.btn-light:hover {
+    background: #f3f4f6;
+}
+.btn-danger-light:hover {
+    background: #fee2e2;
+}
+.btn-light-blue:hover {
+    opacity: 0.9;
+}
+
+/* Sidebar links hover */
+.side-link:hover {
+    background: #f3f4f6;
+}
+
+/* Active session table placeholder */
+.active-session-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.active-session-table th, .active-session-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eef2f7;
+}
+.active-session-table th {
+    text-transform: uppercase;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+/* Profile action buttons */
+.top-profile-card a.btn-light-blue {
+    font-size: 13px;
+    padding: 10px 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .page-layout {
+        grid-template-columns: 1fr;
     }
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 
 <div class="settings-page">
-    <div class="top-header">
-        <div class="d-flex align-items-center">
-            <div class="brand-wrap">
-                <div class="brand-logo">We<br>ndis</div>
-                <div>
-                    <div class="brand-provider">Registered<br>NDIS Provider</div>
-                </div>
-                <div class="brand-name">excellent<span>Care Services</span></div>
-            </div>
-
-            <div class="top-nav">
-                <a href="/dashboard">Dashboard</a>
-                <a href="#">Patients</a>
-                <a href="#">Reports</a>
-                <a href="/settings" class="active">Settings</a>
-            </div>
-        </div>
-
-        <div class="header-right">
-            <div class="icon-circle">🔔</div>
-            <div class="icon-circle">👩</div>
-        </div>
-    </div>
-
     <div class="settings-content">
         <div class="page-layout">
             <div class="sidebar-card">

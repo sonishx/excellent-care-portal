@@ -14,4 +14,8 @@ class Patient extends Model
         'last_update',
         'status',
     ];
+    public function careNotes()
+    {
+        return $this->hasMany(CareNote::class);
+    }
 }

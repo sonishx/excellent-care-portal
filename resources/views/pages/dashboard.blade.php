@@ -9,209 +9,38 @@
         font-family: Arial, sans-serif;
         background: #f5f7fb;
     }
-
-    .dashboard-page {
-        min-height: 100vh;
-        background: #f5f7fb;
-    }
-
-    .dashboard-container {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    .breadcrumb {
-        font-size: 13px;
-        color: #9ca3af;
-        margin-bottom: 8px;
-    }
-
-    .page-title-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 22px;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .page-title {
-        font-size: 34px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 4px;
-    }
-
-    .page-subtitle {
-        font-size: 14px;
-        color: #6b7280;
-    }
-
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .action-buttons button {
-        border: 1px solid #dbe2ea;
-        background: white;
-        border-radius: 8px;
-        padding: 10px 14px;
-        font-size: 13px;
-        font-weight: 500;
-    }
-
-    .action-buttons .primary-btn {
-        background: #1f6ef2;
-        color: white;
-        border: none;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-        margin-bottom: 20px;
-    }
-
-    .stat-card {
-        background: white;
-        border-radius: 14px;
-        padding: 18px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-    }
-
-    .stat-title {
-        font-size: 12px;
-        color: #6b7280;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-
-    .stat-value {
-        font-size: 30px;
-        font-weight: 700;
-        color: #111827;
-    }
-
-    .stat-change {
-        font-size: 12px;
-        color: #16a34a;
-        margin-left: 8px;
-    }
-
-    .dashboard-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-
-    .panel {
-        background: white;
-        border-radius: 14px;
-        padding: 20px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-    }
-
-    .panel-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 6px;
-    }
-
-    .panel-subtitle {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 18px;
-    }
-
-    .chart-placeholder {
-        height: 280px;
-        background: linear-gradient(to top, #dbeafe, #f8fbff);
-        border-radius: 10px;
-        display: flex;
-        align-items: end;
-        justify-content: space-around;
-        padding: 20px;
-    }
-
-    .bar {
-        width: 40px;
-        background: #3b82f6;
-        border-radius: 8px 8px 0 0;
-    }
-
-    .mini-widget {
-        background: #f9fafb;
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 15px;
-    }
-
-    .progress-line {
-        height: 8px;
-        border-radius: 30px;
-        background: #e5e7eb;
-        overflow: hidden;
-        margin: 8px 0 6px;
-    }
-
-    .progress-fill {
-        height: 100%;
-        background: #2563eb;
-    }
-
-    .legend-item {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 6px;
-    }
-
-    .activity-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .activity-table th,
-    .activity-table td {
-        text-align: left;
-        padding: 14px 10px;
-        font-size: 13px;
-        border-bottom: 1px solid #eef2f7;
-    }
-
-    .activity-table th {
-        color: #6b7280;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-
-    .status-badge {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 999px;
-        font-size: 11px;
-        font-weight: 600;
-    }
-
+    .dashboard-page { min-height: 100vh; background: #f5f7fb; }
+    .dashboard-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .breadcrumb { font-size: 13px; color: #9ca3af; margin-bottom: 8px; }
+    .page-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+    .page-title { font-size: 34px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .page-subtitle { font-size: 14px; color: #6b7280; }
+    .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+    .action-buttons button { border: 1px solid #dbe2ea; background: white; border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: 500; }
+    .action-buttons .primary-btn { background: #1f6ef2; color: white; border: none; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 20px; }
+    .stat-card { background: white; border-radius: 14px; padding: 18px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04); }
+    .stat-title { font-size: 12px; color: #6b7280; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
+    .stat-value { font-size: 30px; font-weight: 700; color: #111827; }
+    .stat-change { font-size: 12px; color: #16a34a; margin-left: 8px; }
+    .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .panel { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04); }
+    .panel-title { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+    .panel-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 18px; }
+    .mini-widget { background: #f9fafb; border-radius: 12px; padding: 16px; margin-bottom: 15px; }
+    .progress-line { height: 8px; border-radius: 30px; background: #e5e7eb; overflow: hidden; margin: 8px 0 6px; }
+    .progress-fill { height: 100%; background: #2563eb; }
+    .legend-item { font-size: 13px; color: #6b7280; margin-bottom: 6px; }
+    .activity-table { width: 100%; border-collapse: collapse; }
+    .activity-table th, .activity-table td { text-align: left; padding: 14px 10px; font-size: 13px; border-bottom: 1px solid #eef2f7; }
+    .activity-table th { color: #6b7280; font-size: 12px; text-transform: uppercase; }
+    .status-badge { display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
     .status-green { background: #dcfce7; color: #15803d; }
     .status-blue { background: #dbeafe; color: #1d4ed8; }
     .status-yellow { background: #fef3c7; color: #a16207; }
 
-    @media (max-width: 992px) {
-        .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        .dashboard-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-        .stats-grid { grid-template-columns: 1fr; }
-        .page-title { font-size: 28px; }
-    }
+    @media (max-width: 992px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .dashboard-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } .page-title { font-size: 28px; } }
 </style>
 
 <div class="dashboard-page">
@@ -243,7 +72,6 @@
                     <span class="stat-change">Registered users</span>
                 </div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-title">Total Users</div>
                 <div>
@@ -251,7 +79,6 @@
                     <span class="stat-change">Portal accounts</span>
                 </div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-title">Caregivers</div>
                 <div>
@@ -259,28 +86,11 @@
                     <span class="stat-change">Support staff</span>
                 </div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-title">Admins</div>
                 <div>
                     <span class="stat-value">{{ $totalAdmins }}</span>
                     <span class="stat-change">System managers</span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-title">Total Messages</div>
-                <div>
-                    <span class="stat-value">{{ $totalMessages }}</span>
-                    <span class="stat-change">Sent messages</span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-title">Total Documents</div>
-                <div>
-                    <span class="stat-value">{{ $totalDocuments }}</span>
-                    <span class="stat-change">Uploaded documents</span>
                 </div>
             </div>
         </div>
@@ -291,42 +101,20 @@
                 <div class="panel-title">User Activity</div>
                 <div class="panel-subtitle">Daily active users (Clinicians & Caregivers)</div>
 
-                <div class="chart-placeholder">
-                    <div class="bar" style="height: 90px;"></div>
-                    <div class="bar" style="height: 130px;"></div>
-                    <div class="bar" style="height: 120px;"></div>
-                    <div class="bar" style="height: 160px;"></div>
-                    <div class="bar" style="height: 190px;"></div>
-                    <div class="bar" style="height: 150px;"></div>
-                    <div class="bar" style="height: 210px;"></div>
-                    <div class="bar" style="height: 230px;"></div>
-                    <div class="bar" style="height: 180px;"></div>
-                    <div class="bar" style="height: 250px;"></div>
-                    <div class="bar" style="height: 265px;"></div>
-                    <div class="bar" style="height: 290px;"></div>
-                </div>
+                <canvas id="activityChart" height="280"></canvas>
             </div>
 
             <div>
                 <div class="panel mini-widget">
                     <div class="panel-title">User Distribution</div>
-
                     <div class="legend-item">Clinicians ({{ $clinicianPercentage }}%)</div>
-                    <div class="progress-line">
-                        <div class="progress-fill" style="width: {{ $clinicianPercentage }}%;"></div>
-                    </div>
-
+                    <div class="progress-line"><div class="progress-fill" style="width: {{ $clinicianPercentage }}%;"></div></div>
                     <div class="legend-item">Caregivers ({{ $caregiverPercentage }}%)</div>
-                    <div class="progress-line">
-                        <div class="progress-fill" style="width: {{ $caregiverPercentage }}%;"></div>
-                    </div>
-
+                    <div class="progress-line"><div class="progress-fill" style="width: {{ $caregiverPercentage }}%;"></div></div>
                     <div class="mt-3 text-success fw-semibold" style="font-size: 13px;">
                         {{ $totalUsers }} total registered users
                     </div>
-                    <div class="text-muted" style="font-size: 12px;">
-                        Based on current portal accounts
-                    </div>
+                    <div class="text-muted" style="font-size: 12px;">Based on current portal accounts</div>
                 </div>
 
                 <div class="panel mini-widget">
@@ -365,13 +153,49 @@
                             <td><span class="status-badge status-green">Active</span></td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="5">No recent activity found.</td>
-                        </tr>
+                        <tr><td colspan="5">No recent activity found.</td></tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('activityChart').getContext('2d');
+
+const labels = @json($activityDates);  // ['Apr 01', 'Apr 02', ...]
+const data = @json($activityCounts);   // [12, 18, ...]
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Daily Active Users',
+            data: data,
+            backgroundColor: '#1f6ef2',
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: { mode: 'index' }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Users' }
+            },
+            x: {
+                title: { display: true, text: 'Date' }
+            }
+        }
+    }
+});
+</script>
 @endsection

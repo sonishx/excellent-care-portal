@@ -8,7 +8,8 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\CareNoteController; // Make sure this is imported
+use App\Http\Controllers\CareNoteController;
+use App\Http\Controllers\ChatSupportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\CareNoteController; // Make sure this is imported
 |--------------------------------------------------------------------------
 */
 
+// Guest routes
 Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -24,6 +26,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/signup', [AuthController::class, 'register'])->name('signup.post');
 });
 
+// Authenticated routes
 Route::middleware('auth')->group(function () {
 
     // Dashboard
@@ -37,12 +40,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('documents.delete');
 
     // Inbox & Messages
-    Route::get('/inbox', function () {
-        return view('pages.inbox');
-    })->name('inbox');
-
+    Route::get('/inbox', fn() => view('pages.inbox'))->name('inbox');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+
+    // Chat Support (browser-based AI)
+    Route::get('/chatsupport', [ChatSupportController::class, 'index'])->name('chatsupport');
+    Route::post('/chatsupport/send', [ChatSupportController::class, 'sendMessage'])->name('chatsupport.send');
 
     // Patients
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
@@ -57,11 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class, 'edit'])->name('settings');
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
-    // Chat support
-    Route::get('/chatsupport', function () {
-        return view('pages.chatsupport');
-    })->name('chatsupport');
-
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -70,11 +69,8 @@ Route::middleware('auth')->group(function () {
     | Care Plans Module
     |--------------------------------------------------------------------------
     */
-
-    // Step 1: Patient selection page for Care Plans
     Route::get('/careplans/select', [CareNoteController::class, 'selectPatient'])->name('careplans.select');
 
-    // Step 2: Care Notes for a specific patient
     Route::prefix('patients/{patientId}/careplans')->group(function () {
         Route::get('/', [CareNoteController::class, 'index'])->name('careplans.index'); // List care notes
         Route::get('/create', [CareNoteController::class, 'create'])->name('careplans.create'); // Add new note

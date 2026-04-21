@@ -1,0 +1,116 @@
+[33m25941f95[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mweek7-progress[m[33m, [m[1;31morigin/week7-progress[m[33m)[m Week 7: Dashboard, ChatSupport JS AI integration, UI updates, export CSV feature
+[33m4300183a[m[33m ([m[1;31morigin/week6-backend[m[33m, [m[1;32mweek6-backend[m[33m)[m Week 6 Backend: Add CareNote and other functionality with controllers, models, migration, routes, and views
+[33m266ddaa4[m[33m ([m[1;31morigin/week5-progress[m[33m, [m[1;32mweek5-progress[m[33m)[m Week 5 progress: added controllers, models, migrations, routes, views, and project planning files
+[33m945f4e5a[m[33m ([m[1;33mtag: [m[1;33mv12.12.2[m[33m)[m Revert index
+[33mcd2bde56[m [12.x] Add `APP_NAME` fallback in Slack log channel username (#6762)
+[33m214636dd[m Update CHANGELOG
+[33mf1f2befa[m[33m ([m[1;33mtag: [m[1;33mv12.12.1[m[33m)[m Uses unqualified names (#6760)
+[33m6b54a4df[m Update CHANGELOG
+[33mb36082a2[m[33m ([m[1;33mtag: [m[1;33mv12.12.0[m[33m)[m update index
+[33m41e7b8f0[m Neutralize DB_URL in phpunit.xml test config (#6761)
+[33m9c073b07[m [12.x] Add `APP_NAME` fallback in mail config (#6755)
+[33m8a119d7f[m Update phpunit version to ^11.5.50 (#6746)
+[33m81ee06ed[m Update CHANGELOG
+[33m51cd6975[m[33m ([m[1;33mtag: [m[1;33mv12.11.2[m[33m)[m chore: Update outdated GitHub Actions version (#6743)
+[33m31607246[m [12.x] Add `APP_URL` fallback in filesystems config (#6742)
+[33me713de24[m Revert "add index to failed jobs" (#6739)
+[33mbe7c4b76[m [12.x] Update jobs/cache migrations (#6736)
+[33m36281b28[m add index to failed jobs
+[33mcf85ab1a[m Update composer.json (#6735)
+[33m45f8f070[m Update CHANGELOG
+[33m591d3e89[m[33m ([m[1;33mtag: [m[1;33mv12.11.1[m[33m)[m fix: ensure APP_URL does not have trailing slash in filesystem public URL (#6728)
+[33mf3613e9f[m Use environment variable for `DB_SSLMODE` for Postgres (#6727)
+[33mad4ca3e9[m Update CHANGELOG
+[33m7663a8ce[m[33m ([m[1;33mtag: [m[1;33mv12.11.0[m[33m)[m Ignore Laravel compiled views for Vite  (#6714)
+[33m8500bcc5[m Fix 8.5 PDO Deprecation (#6710)
+[33mf6b2e79b[m fix: cookies are not available for subdomains by default (#6705)
+[33m9401db1c[m Update CHANGELOG
+[33m18124900[m[33m ([m[1;33mtag: [m[1;33mv12.10.1[m[33m)[m Update schema URL in package.json (#6701)
+[33m10b782f1[m Update CHANGELOG
+[33m76396a05[m[33m ([m[1;33mtag: [m[1;33mv12.10.0[m[33m)[m Add background driver (#6699)
+[33m6576dc16[m update language
+[33m5480b2a1[m Update CHANGELOG
+[33m6fc2c6dc[m[33m ([m[1;33mtag: [m[1;33mv12.9.1[m[33m)[m Comment out CLI workers for fresh applications (#6693)
+[33m9b737df4[m [12.x] Replace Bootcamp with Laravel Learn (#6692)
+[33m56c833e6[m Update CHANGELOG
+[33m8e93cae1[m[33m ([m[1;33mtag: [m[1;33mv12.9.0[m[33m)[m add failover cache config
+[33m9eb58251[m Update CHANGELOG
+[33m473734f5[m[33m ([m[1;33mtag: [m[1;33mv12.8.0[m[33m)[m Makes test suite using broadcast's `null` driver (#6691)
+[33mb8344c35[m add deferred queue
+[33m7db142b5[m deferred queue config
+[33m5dfbed80[m Update CHANGELOG
+[33mce337914[m[33m ([m[1;33mtag: [m[1;33mv12.7.1[m[33m)[m Update queue.php (#6688)
+[33m976c622a[m update failover
+[33m741aa393[m Update CHANGELOG
+[33me0724640[m[33m ([m[1;33mtag: [m[1;33mv12.7.0[m[33m)[m add failover driver
+[33mb45fe690[m disable model events by default when seeding
+[33m4cb927ab[m Update CHANGELOG
+[33me297ded0[m[33m ([m[1;33mtag: [m[1;33mv12.6.0[m[33m)[m Fix setup script (#6682)
+[33mbd4a7dd9[m reorder composer scripts
+[33mda94152d[m remove seed from setup
+[33m78280336[m ship setup script for cloning down new projects
+[33m65712bd7[m Update CHANGELOG
+[33med88ce02[m[33m ([m[1;33mtag: [m[1;33mv12.5.0[m[33m)[m Add pre-package-uninstall script to composer.json (#6681)
+[33maf512c59[m Update .editorconfig to target compose.yaml instead of docker-compose.yml (#6679)
+[33m4d04f68e[m fix database
+[33meebb39cf[m Bump vite to ^7.0.7 (#6672)
+[33ma696e5fd[m Fix type casting for environment variables in config files (#6670)
+[33m39072d07[m move some items into pragmas
+[33mb3d686ab[m Update CHANGELOG
+[33m9905b67c[m[33m ([m[1;33mtag: [m[1;33mv12.4.0[m[33m)[m [12.x] Add default Redis retry configuration (#6666)
+[33m5b585a22[m deferred option
+[33m08ab2598[m Update CHANGELOG
+[33m4aeb5602[m[33m ([m[1;33mtag: [m[1;33mv12.3.1[m[33m)[m revert (#6662)
+[33md9d44941[m Use application name from configuration (#6655)
+[33m84501124[m Making sure all related processed are closed when terminating the currently command (#6654)
+[33m730d9b5e[m Bump Pint version (#6653)
+[33m8d8d3b72[m Update CHANGELOG
+[33ma4d121f5[m[33m ([m[1;33mtag: [m[1;33mv12.3.0[m[33m)[m Change composer post-autoload-dump script to Artisan command (#6647)
+[33m902200e7[m Revert "fix" (#6646)
+[33mefc90e28[m Fix Critical Security Vulnerability in form-data Dependency (#6645)
+[33m85481fe4[m Update CHANGELOG
+[33m624fb58a[m[33m ([m[1;33mtag: [m[1;33mv12.2.0[m[33m)[m Add Vite 7 support (#6639)
+[33ma52070f6[m Update CHANGELOG
+[33m4ab12157[m[33m ([m[1;33mtag: [m[1;33mv12.1.0[m[33m)[m [12.x] Fix type casting for environment variables in config files (#6637)
+[33mdd473ead[m fix
+[33m9a177b07[m Change to hyphenate prefixes and cookie names (#6636)
+[33m96164d15[m Reorder environment variables in phpunit.xml for logical grouping (#6634)
+[33m57b467f1[m disable nightwatch in testing (#6632)
+[33mf7992fab[m Update CHANGELOG
+[33m78600b89[m[33m ([m[1;33mtag: [m[1;33mv12.0.11[m[33m)[m Update CHANGELOG
+[33m26ea0b69[m[33m ([m[1;33mtag: [m[1;33mv12.0.10[m[33m)[m [12.x] Fix: Add void return type to withMiddleware and withExceptions to satisfy Rector analysis (#6628)
+[33m2f8a5bf1[m Reduce redundancy and keeps the .gitignore file cleaner (#6629)
+[33mcd854afd[m fix alphabetical order (#6627)
+[33m047ed5ad[m Update CHANGELOG
+[33m66578278[m[33m ([m[1;33mtag: [m[1;33mv12.0.9[m[33m)[m Enhance .gitignore to exclude common OS and log files (#6619)
+[33m1c027454[m Minor language update (#6615)
+[33m3731b09a[m Add JSON Schema to package.json (#6613)
+[33m468d9458[m remove apc (#6611)
+[33m07641526[m Update CHANGELOG
+[33m2d8f5620[m[33m ([m[1;33mtag: [m[1;33mv12.0.8[m[33m)[m remove apc
+[33mf6e4638e[m Clean up URL formatting in README (#6601)
+[33m126a6638[m Update CHANGELOG
+[33me654bf36[m[33m ([m[1;33mtag: [m[1;33mv12.0.7[m[33m)[m Premium partner changes (#6599)
+[33m43ad1946[m Add `composer run test` command (#6598)
+[33mfc42b713[m Update CHANGELOG
+[33m7a701553[m[33m ([m[1;33mtag: [m[1;33mv12.0.6[m[33m)[m use in memory database by default
+[33m14cec1e9[m Update CHANGELOG
+[33m6087e4fd[m[33m ([m[1;33mtag: [m[1;33mv12.0.5[m[33m)[m [12.x] Update `config/mail.php` to match the latest core configuration (#6594)
+[33mf1391517[m Update CHANGELOG
+[33mf308c84b[m[33m ([m[1;33mtag: [m[1;33mv12.0.4[m[33m)[m Bump vite from 6.2.3 to 6.2.4 (#6590)
+[33m4d9e70e4[m Bump vite from 6.0.11 to 6.2.3 - Vulnerability patch (#6586)
+[33m979202df[m Update CHANGELOG
+[33m4d6a75b0[m[33m ([m[1;33mtag: [m[1;33mv12.0.3[m[33m)[m [12.x] Remove Unnecessarily @source (#6584)
+[33m8402e5b6[m Bump axios from 1.7.9 to 1.8.2 (#6572)
+[33m3549033a[m [12.x] Refactor: Structural improvement for clarity (#6574)
+[33m7d1dcad7[m Improves clarity in app.css file (#6569)
+[33mc1f2608e[m Remove reverted change from CHANGELOG.md (#6565)
+[33m27348b7c[m remove change for now
+[33m661e5699[m Update CHANGELOG
+[33m13906723[m[33m ([m[1;33mtag: [m[1;33mv12.0.2[m[33m)[m feat: add type hints for $this in routes/console.php (#6559)
+[33m540728ed[m Switch to `php artisan test` to make it work out of the box (#6555)
+[33mbd44e4a0[m Update CHANGELOG
+[33mc7e8fc4f[m[33m ([m[1;33mtag: [m[1;33mv12.0.1[m[33m)[m [12.x] prefer stable stability (#6548)
+[33mfd518907[m[33m ([m[1;33mtag: [m[1;33mv12.0.0[m[33m)[m Apply fixes from StyleCI
+[33m1b8506b0[m update fonts
+[33mab101086[m Adding new laravel welcome (#6546)

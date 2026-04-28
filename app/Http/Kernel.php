@@ -55,8 +55,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        // Custom middleware
-        
+        // Custom role-based middleware
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'caregiver' => \App\Http\Middleware\CaregiverMiddleware::class,
+        'clinician' => \App\Http\Middleware\ClinicianMiddleware::class,
     ];
 }

@@ -161,11 +161,24 @@
         <!-- Navigation -->
         <div class="nav-links">
             <a href="{{ route('dashboard') }}" class="@if(request()->routeIs('dashboard')) active @endif">Dashboard</a>
-            <a href="{{ route('patients') }}" class="@if(request()->routeIs('patients*')) active @endif">Patients</a>
-            <a href="{{ route('careplans.select') }}" class="@if(request()->routeIs('careplans.select')) active @endif">Care Plans</a>
+            
+            @auth
+                {{-- Caregiver Only --}}
+                @if(auth()->user()->role === 'caregiver')
+                    <a href="{{ route('patients') }}" class="@if(request()->routeIs('patients*')) active @endif">Patients</a>
+                    <a href="{{ route('careplans.select') }}" class="@if(request()->routeIs('careplans.select')) active @endif">Care Plans</a>
+                @endif
+            @endauth
+            
             <a href="{{ route('documents') }}" class="@if(request()->routeIs('documents*')) active @endif">Documents</a>
             <a href="{{ route('chatsupport') }}" class="@if(request()->routeIs('chatsupport')) active @endif">Chat Support</a>
-            <a href="{{ route('settings') }}" class="@if(request()->routeIs('settings*')) active @endif">Settings</a>
+            
+            @auth
+                {{-- Admin and Clinician Only --}}
+                @if(in_array(auth()->user()->role, ['admin', 'clinician']))
+                    <a href="{{ route('settings') }}" class="@if(request()->routeIs('settings*')) active @endif">Settings</a>
+                @endif
+            @endauth
         </div>
 
         <!-- Header Right -->

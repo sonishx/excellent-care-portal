@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class ChatbotService
 {
-    public function generateResponse(string $userMessage, int $userId, ?string $userRole = null): string
+    public function generateResponse(string $userMessage, ?int $userId = null, ?string $userRole = null): string
     {
         try {
             return $this->generateOllamaResponse($userMessage, $userId, $userRole);
@@ -18,9 +18,9 @@ class ChatbotService
         }
     }
 
-    protected function generateOllamaResponse(string $userMessage, int $userId, ?string $userRole = null): string
+    protected function generateOllamaResponse(string $userMessage, ?int $userId = null, ?string $userRole = null): string
     {
-        $conversationHistory = $this->getConversationHistory($userId);
+        $conversationHistory = $userId ? $this->getConversationHistory($userId) : [];
 
         $messages = [
             [
@@ -97,11 +97,15 @@ class ChatbotService
 
     protected function getSystemPrompt(?string $userRole = null): string
     {
-        $roleLine = $userRole ? "User role: {$userRole}." : "";
+        if (!$userRole) {
+            return "You are a basic AI assistant for Excellent Care Services. 
+            The user is a guest. Answer general questions about the portal and care services briefly and politely. 
+            Do not provide specific patient or clinical information.";
+        }
 
         return "You are an AI assistant for Excellent Care Services, an NDIS and Aged Care provider.
-{$roleLine}
-Answer clearly, professionally, and concisely.
-Help users with portal questions, patients, care plans, documents, schedules, and general support.";
+        User role: {$userRole}.
+        Answer clearly, professionally, and concisely.
+        Help users with portal questions, patients, care plans, documents, schedules, and general support.";
     }
 }

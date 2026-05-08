@@ -9,28 +9,33 @@ use Illuminate\Support\Facades\Auth;
 class PatientController extends Controller
 {
     // Ensure only Caregivers can access patient-related actions
-    public function __construct()
-    {
-        $this->middleware('caregiver');
-    }
+    // Middleware is now handled in web.php routes
 
     public function index()
     {
-        // Fetch patients with sorting options
-        $patients = Patient::latest()->get();
+        $user = Auth::user();
+        
+        if (strtolower($user->role) === 'admin') {
+            $patients = Patient::with('assignedStaff')->latest()->get();
+            $staffMembers = \App\Models\User::whereIn('role', ['clinician', 'caregiver'])->get();
+        } else {
+            // Staff only see assigned patients
+            $patients = $user->assignedPatients()->with('assignedStaff')->latest()->get();
+            $staffMembers = collect();
+        }
 
-        $totalPatients = Patient::count();
-        $activePatients = Patient::where('status', 'Active')->count();
-        $pendingPatients = Patient::where('status', 'Pending Review')->count();
-        $inactivePatients = Patient::where('status', 'Inactive')->count();
+        $totalPatients = strtolower($user->role) === 'admin' ? Patient::count() : $patients->count();
+        $activePatients = strtolower($user->role) === 'admin' ? Patient::where('status', 'Active')->count() : $patients->where('status', 'Active')->count();
+        $pendingPatients = strtolower($user->role) === 'admin' ? Patient::where('status', 'Pending Review')->count() : $patients->where('status', 'Pending Review')->count();
+        $inactivePatients = strtolower($user->role) === 'admin' ? Patient::where('status', 'Inactive')->count() : $patients->where('status', 'Inactive')->count();
 
-        // Return view with patient data
         return view('pages.patients', compact(
             'patients',
             'totalPatients',
             'activePatients',
             'pendingPatients',
-            'inactivePatients'
+            'inactivePatients',
+            'staffMembers'
         ));
     }
 

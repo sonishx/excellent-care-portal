@@ -7,37 +7,57 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary: #6f2dbd;
+            --primary-light: #a29bfe;
+            --primary-gradient: linear-gradient(135deg, #6f2dbd 0%, #a29bfe 100%);
+            --secondary: #f45d75;
+            --accent: #f28c52;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --text-light: #475569;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
         }
 
         .top-header {
-            height: 70px;
-            background: #ffffff;
-            border-bottom: 1px solid #edf1f5;
+            height: 80px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 30px;
-            flex-wrap: wrap;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .brand-area {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .brand-logo-circle {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #6f2dbd;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--primary);
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -47,104 +67,199 @@
         }
 
         .brand-provider {
-            font-size: 10px;
-            color: #6b7280;
+            font-size: 11px;
+            color: var(--text-light);
             line-height: 1.2;
+            font-weight: 500;
         }
 
         .brand-main {
-            font-size: 18px;
-            font-weight: 700;
-            color: #f45d75;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.5px;
         }
 
         .brand-main span {
-            font-size: 12px;
-            color: #f28c52;
+            font-size: 14px;
+            color: var(--accent);
             font-weight: 600;
-            margin-left: 2px;
+            margin-left: 3px;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
-            margin-left: 25px;
-            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #4b5563;
-            font-size: 13px;
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(111, 45, 189, 0.05);
+            color: var(--primary);
         }
 
         .nav-links a.active {
-            font-weight: 700;
-            color: #111827;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(111, 45, 189, 0.1);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
+            gap: 18px;
         }
 
         .search-box {
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid #dbe2ea;
-            padding: 0 12px;
-            font-size: 13px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            padding: 0 15px;
+            font-size: 14px;
+            background: #fff;
+            width: 220px;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .search-box::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(111, 45, 189, 0.1);
         }
 
         .icon-circle {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             background: #f3f4f6;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .icon-circle:hover {
+            background: #e5e7eb;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .user-name-header {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            color: #111827;
+            color: var(--text);
         }
 
         .logout-btn {
-            background: none;
+            background: #fee2e2;
             border: none;
             color: #ef4444;
             font-size: 12px;
-            padding: 0;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #fecaca;
+        }
+
+        /* Global Utilities */
+        .btn-primary {
+            background: linear-gradient(135deg, #6f2dbd 0%, #a29bfe 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(111, 45, 189, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #6f2dbd 0%, #a29bfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .main-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* Standard Card Style */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        @media (max-width: 1024px) {
+            .search-box { display: none; }
         }
 
         @media (max-width: 768px) {
             .top-header {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 15px 18px;
                 height: auto;
-                gap: 10px;
+                padding: 20px;
+                gap: 20px;
             }
-
             .nav-links {
-                margin-left: 0;
-            }
-
-            .header-right {
-                justify-content: flex-start;
+                overflow-x: auto;
+                width: 100%;
+                padding-bottom: 5px;
             }
         }
     </style>
@@ -164,18 +279,24 @@
             
             @auth
                 {{-- Caregiver Only --}}
-                @if(auth()->user()->role === 'caregiver')
+                @if(strtolower(auth()->user()->role) === 'caregiver')
                     <a href="{{ route('patients') }}" class="@if(request()->routeIs('patients*')) active @endif">Patients</a>
                     <a href="{{ route('careplans.select') }}" class="@if(request()->routeIs('careplans.select')) active @endif">Care Plans</a>
                 @endif
             @endauth
             
             <a href="{{ route('documents') }}" class="@if(request()->routeIs('documents*')) active @endif">Documents</a>
+            
+            @auth
+                <a href="{{ route('messages.index') }}" class="@if(request()->routeIs('messages*')) active @endif">Messages</a>
+            @endauth
+            
             <a href="{{ route('chatsupport') }}" class="@if(request()->routeIs('chatsupport')) active @endif">Chat Support</a>
             
             @auth
                 {{-- Admin and Clinician Only --}}
-                @if(in_array(auth()->user()->role, ['admin', 'clinician']))
+                @php $role = strtolower(auth()->user()->role); @endphp
+                @if(in_array($role, ['admin', 'clinician']))
                     <a href="{{ route('settings') }}" class="@if(request()->routeIs('settings*')) active @endif">Settings</a>
                 @endif
             @endauth
@@ -184,9 +305,23 @@
         <!-- Header Right -->
         <div class="header-right">
             <input type="text" class="search-box" placeholder="Search...">
-            <div class="icon-circle">🔔</div>
-            <div class="user-name-header">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</div>
-            <div class="icon-circle">👩</div>
+            <div class="icon-circle" style="position: relative;">
+                🔔
+                @auth
+                    @php 
+                        $unreadCount = \App\Models\Message::where('receiver_id', auth()->id())->whereNull('read_at')->count();
+                    @endphp
+                    @if($unreadCount > 0)
+                        <span style="position: absolute; top: -5px; right: -5px; background: var(--secondary); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; border: 2px solid white;">
+                            {{ $unreadCount }}
+                        </span>
+                    @endif
+                @endauth
+            </div>
+            <div class="user-info">
+                <div class="user-name-header">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</div>
+                <div class="icon-circle">👩</div>
+            </div>
 
             @auth
                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
@@ -201,5 +336,10 @@
     <div class="main-container">
         @yield('content')
     </div>
+
+    <!-- Floating Chatbot Component (Hidden on Chat Support page) -->
+    @if(!request()->routeIs('chatsupport'))
+        <x-chatbot />
+    @endif
 </body>
 </html>

@@ -35,12 +35,16 @@
         <form method="POST" action="{{ route('signup.post') }}">
             @csrf
 
-            <div class="role-selector">
-                <div class="role-option active" data-role="Clinician">Clinician</div>
-                <div class="role-option" data-role="Caregiver">Caregiver</div>
-                <div class="role-option" data-role="Admin">Admin</div>
+            <div class="mb-4">
+                <div style="font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 8px;">Your Assigned Role</div>
+                <div class="role-selector" style="pointer-events: none; opacity: 0.8;">
+                    <div class="role-option {{ strtolower($invitation->role) === 'clinician' ? 'active' : '' }}">Clinician</div>
+                    <div class="role-option {{ strtolower($invitation->role) === 'caregiver' ? 'active' : '' }}">Caregiver</div>
+                    <div class="role-option {{ strtolower($invitation->role) === 'admin' ? 'active' : '' }}">Admin</div>
+                </div>
+                <input type="hidden" name="role" value="{{ $invitation->role }}">
+                <input type="hidden" name="token" value="{{ $invitation->token }}">
             </div>
-            <input type="hidden" name="role" id="selectedRole" value="Clinician">
 
             <div class="mb-3">
                 <label class="form-label" for="fullName">Full Name</label>
@@ -50,7 +54,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com.au" value="{{ old('email') }}">
+                <input type="email" id="email" name="email" class="form-control" value="{{ $invitation->email }}" readonly style="background: #f8fafc; cursor: not-allowed; color: #64748b;">
                 @error('email') <div class="error-text">{{ $message }}</div> @enderror
             </div>
 
@@ -93,16 +97,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const roleOptions = document.querySelectorAll('.role-option');
-    const selectedRoleInput = document.getElementById('selectedRole');
-
-    roleOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            roleOptions.forEach(item => item.classList.remove('active'));
-            this.classList.add('active');
-            selectedRoleInput.value = this.getAttribute('data-role');
-        });
-    });
+// Role selection is disabled for invitations
 });
 </script>
 @endsection

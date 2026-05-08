@@ -14,9 +14,20 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function showSignup()
+    public function showSignup(Request $request)
     {
-        return view('auth.signup');
+        $token = $request->query('token');
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Registration is by invitation only.');
+        }
+
+        $invitation = \App\Models\Invitation::where('token', $token)->first();
+
+        if (!$invitation || $invitation->isExpired() || $invitation->isUsed()) {
+            return redirect()->route('login')->with('error', 'Invalid or expired invitation link.');
+        }
+
+        return view('auth.signup', compact('invitation'));
     }
 
     public function register(Request $request)
@@ -25,15 +36,27 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
-            'role' => 'required|string',
+            'token' => 'required|string|exists:invitations,token',
         ]);
+
+        $invitation = \App\Models\Invitation::where('token', $request->token)->first();
+
+        if (!$invitation || $invitation->isExpired() || $invitation->isUsed()) {
+            return redirect()->route('login')->with('error', 'Invalid or expired invitation link.');
+        }
+
+        if ($invitation->email !== $request->email) {
+            return back()->withErrors(['email' => 'This email does not match the invitation.'])->withInput();
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            'role' => $invitation->role,
             'password' => Hash::make($request->password),
         ]);
+
+        $invitation->update(['registered_at' => now()]);
 
         Auth::login($user);
 

@@ -18,9 +18,12 @@ class ChatSupportController extends Controller
 
     public function index()
     {
-        $messages = ChatMessage::where('user_id', Auth::id())
-            ->orderBy('created_at', 'asc')
-            ->get();
+        $messages = [];
+        if (Auth::check()) {
+            $messages = ChatMessage::where('user_id', Auth::id())
+                ->orderBy('created_at', 'asc')
+                ->get();
+        }
 
         return view('pages.chatsupport', compact('messages'));
     }
@@ -29,9 +32,12 @@ class ChatSupportController extends Controller
     {
         $request->validate(['message' => 'required|string|max:1000']);
         
+        $userId = Auth::id();
+        $userRole = Auth::user()?->role;
+
         // Save user message
         ChatMessage::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId,
             'message' => $request->message,
             'sender_type' => 'user',
         ]);
@@ -39,13 +45,13 @@ class ChatSupportController extends Controller
         // Generate bot response using the service
         $botReply = $this->chatbotService->generateResponse(
             $request->message,
-            Auth::id(),
-            Auth::user()?->role,
+            $userId,
+            $userRole,
         );
 
         // Save bot message
         $botMessage = ChatMessage::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId,
             'message' => $botReply,
             'sender_type' => 'bot',
         ]);

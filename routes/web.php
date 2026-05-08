@@ -10,6 +10,8 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CareNoteController;
 use App\Http\Controllers\ChatSupportController;
+use App\Http\Controllers\InvitationController;
+use Illuminate\Http\Request;
 
 /*
 |---------------------------------------------------------------------------
@@ -27,7 +29,7 @@ Route::middleware('guest')->group(function () {
 });
 
 // Authenticated routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard (no middleware needed)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -60,12 +62,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents/download/{id}', [DocumentController::class, 'download'])->name('documents.download');
     Route::post('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('documents.delete');
 
-    Route::get('/inbox', fn() => view('pages.inbox'))->name('inbox');
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+    Route::get('/inbox', [MessageController::class, 'index'])->name('inbox'); // Keep inbox as alias
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
 
-    Route::get('/chatsupport', [ChatSupportController::class, 'index'])->name('chatsupport');
-    Route::post('/chatsupport/send', [ChatSupportController::class, 'sendMessage'])->name('chatsupport.send');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -77,4 +79,36 @@ Route::middleware('auth')->group(function () {
     // ---------------------------
     Route::get('/settings', [SettingsController::class, 'edit'])->name('settings');
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+    // ---------------------------
+    // Middleware for Admins only
+    // ---------------------------
+    Route::middleware('admin')->group(function () {
+        Route::get('/invitations', [InvitationController::class, 'index'])->name('invitations.index');
+        Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
+        Route::delete('/invitations/{id}', [InvitationController::class, 'destroy'])->name('invitations.destroy');
+
+        // Patient Assignments
+        Route::post('/patient-assignments', [\App\Http\Controllers\PatientAssignmentController::class, 'store'])->name('patient-assignments.store');
+        Route::delete('/patient-assignments/{id}', [\App\Http\Controllers\PatientAssignmentController::class, 'destroy'])->name('patient-assignments.destroy');
+    });
 });
+
+// Shared routes (Guest & Auth)
+Route::get('/chatsupport', [ChatSupportController::class, 'index'])->name('chatsupport');
+Route::post('/chatsupport/send', [ChatSupportController::class, 'sendMessage'])->name('chatsupport.send');
+
+// Email Verification Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (\Illuminate\Foundation\Auth\EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

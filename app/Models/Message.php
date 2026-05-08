@@ -9,7 +9,13 @@ class Message extends Model
     protected $fillable = [
         'sender_id',
         'receiver_id',
+        'subject',
         'message',
+        'read_at',
+    ];
+
+    protected $casts = [
+        'read_at' => 'datetime',
     ];
 
     public function sender()

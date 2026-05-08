@@ -9,7 +9,7 @@ class ClinicianMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role === 'clinician') {
+        if (auth()->check() && strtolower(auth()->user()->role) === 'clinician') {
             return $next($request);
         }
 

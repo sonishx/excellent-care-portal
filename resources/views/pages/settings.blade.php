@@ -4,18 +4,7 @@
 
 @section('content')
 <style>
-    /* Page-specific CSS not in master layout */
-    .settings-page {
-        min-height: 100vh;
-        background: #f5f7fb;
-    }
-
-    .settings-content {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 28px 32px 36px;
-    }
-
+    .settings-page { padding-bottom: 50px; }
     .page-layout {
         display: grid;
         grid-template-columns: 280px 1fr;
@@ -24,443 +13,305 @@
     }
 
     .sidebar-card {
-        background: #ffffff;
-        border-radius: 18px;
         padding: 20px 0;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
     }
 
     .sidebar-title {
-        font-size: 24px;
-        font-weight: 700;
-        color: #111827;
-        padding: 0 22px 12px;
-    }
-
-    .sidebar-subtitle {
-        font-size: 13px;
-        color: #6b7280;
-        padding: 0 22px 16px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--text);
+        padding: 0 25px 15px;
+        letter-spacing: -0.5px;
     }
 
     .side-link {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 22px;
+        gap: 12px;
+        padding: 12px 25px;
         text-decoration: none;
-        color: #4b5563;
-        font-size: 13px;
+        color: var(--text-light);
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+    .side-link:hover {
+        background: rgba(111, 45, 189, 0.05);
+        color: var(--primary);
     }
 
     .side-link.active {
-        background: #eef4ff;
-        color: #2563eb;
-        font-weight: 600;
+        background: rgba(111, 45, 189, 0.1);
+        color: var(--primary);
+        border-right: 4px solid var(--primary);
     }
 
-    .logout-wrap {
-        padding: 14px 22px 0;
-    }
-
-    .content-area {
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-    }
-
-    .flash-success {
-        background: #ecfdf3;
-        border: 1px solid #bbf7d0;
-        color: #15803d;
-        border-radius: 12px;
-        padding: 14px 16px;
-        font-size: 13px;
-    }
-
-    .top-profile-card {
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 22px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    .profile-banner {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
+        margin-bottom: 25px;
     }
 
-    .profile-mini {
+    .profile-info {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 20px;
     }
 
-    .profile-photo {
-        width: 72px;
-        height: 72px;
+    .profile-avatar {
+        width: 64px;
+        height: 64px;
         border-radius: 50%;
-        background: #dbeafe;
+        background: var(--primary-gradient);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 28px;
-    }
-
-    .profile-name {
-        font-size: 20px;
-        font-weight: 700;
-        color: #111827;
-    }
-
-    .profile-role {
-        font-size: 13px;
-        color: #6b7280;
-        margin-top: 4px;
-    }
-
-    .verified-badge {
-        background: #ecfdf3;
-        color: #15803d;
-        padding: 7px 12px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    .btn-light-blue {
-        background: #1f6ef2;
         color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 11px 16px;
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 24px;
+        font-weight: 700;
     }
 
     .settings-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 22px;
-    }
-
-    .card {
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 22px;
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-        border: none;
-    }
-
-    .section-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 18px;
+        gap: 24px;
     }
 
     .toggle-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border);
     }
 
-    .toggle-row:last-child {
-        margin-bottom: 0;
-    }
+    .toggle-row:last-child { border-bottom: none; }
 
-    .toggle-text strong {
+    .toggle-info strong {
         display: block;
         font-size: 14px;
-        color: #111827;
-        margin-bottom: 4px;
+        color: var(--text);
+        margin-bottom: 2px;
     }
 
-    .toggle-text span {
-        font-size: 13px;
-        color: #6b7280;
+    .toggle-info span {
+        font-size: 12px;
+        color: var(--text-light);
     }
 
-    .toggle-switch-input {
-        width: 48px;
-        height: 26px;
-        appearance: none;
-        background: #d1d5db;
-        border-radius: 999px;
+    .switch {
         position: relative;
-        outline: none;
-        cursor: pointer;
+        display: inline-block;
+        width: 44px;
+        height: 24px;
     }
 
-    .toggle-switch-input:checked {
-        background: #3b82f6;
-    }
+    .switch input { opacity: 0; width: 0; height: 0; }
 
-    .toggle-switch-input::before {
-        content: '';
+    .slider {
         position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: white;
-        transition: 0.2s;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #94a3b8;
+        transition: .3s;
+        border-radius: 24px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
     }
 
-    .toggle-switch-input:checked::before {
-        left: 25px;
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px; width: 18px;
+        left: 3px; bottom: 3px;
+        background-color: white;
+        transition: .3s;
+        border-radius: 50%;
     }
+
+    input:checked + .slider { background: var(--primary-gradient); }
+    input:checked + .slider:before { transform: translateX(20px); }
 
     @media (max-width: 1024px) {
-        .page-layout {
-            grid-template-columns: 1fr;
-        }
-
-        .settings-grid {
-            grid-template-columns: 1fr;
-        }
+        .page-layout { grid-template-columns: 1fr; }
+        .settings-grid { grid-template-columns: 1fr; }
     }
-    .btn-light {
-    background: white;
-    color: #374151;
-    border: 1px solid #dbe2ea;
-    border-radius: 10px;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.btn-danger-light {
-    background: white;
-    color: #ef4444;
-    border: 1px solid #dbe2ea;
-    border-radius: 10px;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-}
-/* Buttons for toggle/action consistency */
-.form-range {
-    width: 100%;
-    accent-color: #2563eb;
-    margin-top: 6px;
-}
-
-.range-value {
-    font-size: 13px;
-    color: #6b7280;
-    margin-top: 4px;
-}
-
-/* Security Card */
-.security-card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: 0 6px 18px rgba(15,23,42,0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* Security item button styling */
-.btn-light, .btn-danger-light, .btn-light-blue {
-    transition: all 0.2s ease;
-}
-.btn-light:hover {
-    background: #f3f4f6;
-}
-.btn-danger-light:hover {
-    background: #fee2e2;
-}
-.btn-light-blue:hover {
-    opacity: 0.9;
-}
-
-/* Sidebar links hover */
-.side-link:hover {
-    background: #f3f4f6;
-}
-
-/* Active session table placeholder */
-.active-session-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.active-session-table th, .active-session-table td {
-    padding: 12px 10px;
-    font-size: 13px;
-    border-bottom: 1px solid #eef2f7;
-}
-.active-session-table th {
-    text-transform: uppercase;
-    color: #6b7280;
-    font-size: 12px;
-}
-
-/* Profile action buttons */
-.top-profile-card a.btn-light-blue {
-    font-size: 13px;
-    padding: 10px 16px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .page-layout {
-        grid-template-columns: 1fr;
-    }
-    .settings-grid {
-        grid-template-columns: 1fr;
-    }
-}
 </style>
 
 <div class="settings-page">
-    <div class="settings-content">
-        <div class="page-layout">
-            <div class="sidebar-card">
-                <div class="sidebar-title">Settings</div>
-                <div class="sidebar-subtitle">Manage your preferences</div>
+    <div class="page-layout">
+        <div class="card sidebar-card">
+            <h2 class="sidebar-title">Settings</h2>
 
-                <a href="#" class="side-link active">👤 Account</a>
-                <a href="#" class="side-link">🔔 Notifications</a>
-                <a href="#" class="side-link">♿ Accessibility</a>
-                <a href="#" class="side-link">🛡 Security</a>
+            <a href="#profile-section" class="side-link active">👤 Account & Profile</a>
+            <a href="#notification-section" class="side-link">🔔 Notification Preferences</a>
+            <a href="#accessibility-section" class="side-link">♿ Accessibility Options</a>
+            <a href="#security-section" class="side-link">🛡 Security & Privacy</a>
+            
+            @if(strtolower(Auth::user()->role) === 'admin')
+                <a href="{{ route('invitations.index') }}" class="side-link">✉ User Invitations</a>
+            @endif
 
-                <div class="logout-wrap">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="logout-btn">↩ Sign out</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="content-area">
-                @if(session('success'))
-                    <div class="flash-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                <div class="top-profile-card">
-                    <div class="profile-mini">
-                        <div class="profile-photo">👩</div>
-                        <div>
-                            <div class="profile-name">{{ Auth::user()->name }}</div>
-                            <div class="profile-role">{{ Auth::user()->role }} • Registered Portal User</div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span class="verified-badge">● Verified User</span>
-                        <a href="/profile" class="btn-light-blue text-decoration-none">Update Profile</a>
-                    </div>
-                </div>
-
-                <form method="POST" action="{{ route('settings.update') }}">
+            <div style="padding: 20px 25px 0; border-top: 1px solid var(--border); margin-top: 10px;">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
-                    <div class="settings-grid">
-                        <div class="card">
-                            <div class="section-title">Notifications</div>
-
-                            <div class="toggle-row">
-                                <div class="toggle-text">
-                                    <strong>Email Notifications</strong>
-                                    <span>Receive updates about patient reports</span>
-                                </div>
-                                <input type="checkbox" name="email_notifications" class="toggle-switch-input" {{ $settings->email_notifications ? 'checked' : '' }}>
-                            </div>
-
-                            <div class="toggle-row">
-                                <div class="toggle-text">
-                                    <strong>Push Notifications</strong>
-                                    <span>Urgent alerts on mobile device</span>
-                                </div>
-                                <input type="checkbox" name="push_notifications" class="toggle-switch-input" {{ $settings->push_notifications ? 'checked' : '' }}>
-                            </div>
-
-                            <div class="toggle-row">
-                                <div class="toggle-text">
-                                    <strong>SMS Alerts</strong>
-                                    <span>For critical patient changes</span>
-                                </div>
-                                <input type="checkbox" name="sms_alerts" class="toggle-switch-input" {{ $settings->sms_alerts ? 'checked' : '' }}>
-                            </div>
-
-                            <div class="mt-4">
-                                <label class="form-label">Digest Frequency</label>
-                                <select name="digest_frequency" class="form-select">
-                                    <option value="Daily Summary" {{ $settings->digest_frequency == 'Daily Summary' ? 'selected' : '' }}>Daily Summary</option>
-                                    <option value="Weekly Summary" {{ $settings->digest_frequency == 'Weekly Summary' ? 'selected' : '' }}>Weekly Summary</option>
-                                    <option value="Monthly Summary" {{ $settings->digest_frequency == 'Monthly Summary' ? 'selected' : '' }}>Monthly Summary</option>
-                                </select>
-                                @error('digest_frequency')
-                                    <div class="field-error">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="section-title">Accessibility</div>
-
-                            <div class="range-row">
-                                <label class="form-label">Text Size</label>
-                                <input type="range" name="text_size" min="80" max="150" value="{{ $settings->text_size }}" class="form-range">
-                                <div class="range-value">{{ $settings->text_size }}%</div>
-                                @error('text_size')
-                                    <div class="field-error">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="toggle-row">
-                                <div class="toggle-text">
-                                    <strong>High Contrast</strong>
-                                    <span>Increase visual distinction</span>
-                                </div>
-                                <input type="checkbox" name="high_contrast" class="toggle-switch-input" {{ $settings->high_contrast ? 'checked' : '' }}>
-                            </div>
-
-                            <div class="toggle-row">
-                                <div class="toggle-text">
-                                    <strong>Reduce Motion</strong>
-                                    <span>Minimize animations</span>
-                                </div>
-                                <input type="checkbox" name="reduce_motion" class="toggle-switch-input" {{ $settings->reduce_motion ? 'checked' : '' }}>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="security-card mt-4">
-                        <div class="section-title">Security & Login</div>
-
-                        <div class="security-item">
-                            <div class="security-left">
-                                <strong>Password</strong>
-                                <span>Password change will be implemented next</span>
-                            </div>
-                            <button type="button" class="btn-light">Change Password</button>
-                        </div>
-
-                        <div class="security-item">
-                            <div class="security-left">
-                                <strong>Two-Factor Authentication (2FA)</strong>
-                                <span>Placeholder for future implementation</span>
-                            </div>
-                            <button type="button" class="btn-danger-light">Disable</button>
-                        </div>
-
-                        <div class="btn-row">
-                            <button type="submit" class="btn-light-blue">Save Settings</button>
-                        </div>
-                    </div>
+                    <button type="submit" style="background: none; border: none; color: #ef4444; font-weight: 700; font-size: 14px; cursor: pointer;">↩ Sign Out</button>
                 </form>
             </div>
         </div>
+
+        <div class="content-area">
+            @if(session('success'))
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 15px; border-radius: 12px; margin-bottom: 10px; font-size: 14px;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <div id="profile-section" class="card profile-banner">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        {{ substr(Auth::user()->name, 0, 1) }}
+                    </div>
+                    <div>
+                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 2px;">{{ Auth::user()->name }}</h3>
+                        <p style="font-size: 13px; color: var(--text-light);">{{ ucfirst(Auth::user()->role) }} • Excellent Care Portal</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <span style="font-size: 12px; font-weight: 700; color: #16a34a; background: #f0fdf4; padding: 6px 12px; border-radius: 20px;">● Active User</span>
+                    <a href="{{ route('profile') }}" class="btn-primary" style="font-size: 13px;">Edit Profile</a>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ route('settings.update') }}">
+                @csrf
+                <div class="settings-grid">
+                    <div id="notification-section" class="card">
+                        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 15px;">Notification Center</h4>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Email Alerts</strong>
+                                <span>Updates on patient reports & tasks</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="email_notifications" {{ $settings->email_notifications ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Push Notifications</strong>
+                                <span>Real-time portal updates</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="push_notifications" {{ $settings->push_notifications ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>SMS Broadcasts</strong>
+                                <span>Emergency clinical alerts</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="sms_alerts" {{ $settings->sms_alerts ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="accessibility-section" class="card">
+                        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 15px;">Accessibility</h4>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Interface Text Size</label>
+                            <div style="background: #f1f5f9; padding: 10px; border-radius: 10px; border: 1px solid var(--border);">
+                                <input type="range" name="text_size" min="80" max="150" value="{{ $settings->text_size }}" style="width: 100%; accent-color: var(--primary); height: 6px;">
+                            </div>
+                            <div style="text-align: right; font-size: 12px; font-weight: 800; color: var(--primary); margin-top: 5px;">{{ $settings->text_size }}%</div>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>High Contrast Mode</strong>
+                                <span>Enhance visual clarity</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="high_contrast" {{ $settings->high_contrast ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="security-section" class="card mt-4">
+                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px;">Security & Login</h4>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid var(--border); margin-bottom: 15px;">
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Password</div>
+                            <div style="font-size: 12px; color: var(--text-light);">Last changed 3 months ago</div>
+                        </div>
+                        <button type="button" class="btn-outline">Change Password</button>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Two-Factor Authentication</div>
+                            <div style="font-size: 12px; color: var(--text-light);">Add an extra layer of security to your account</div>
+                        </div>
+                        <button type="button" class="btn-outline">Setup 2FA</button>
+                    </div>
+
+                    <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                        <button type="submit" class="btn-primary">Save Settings</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+    // Smooth Scroll for Sidebar
+    document.querySelectorAll('.side-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    document.querySelectorAll('.side-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            }
+        });
+    });
+
+    // Live Accessibility Previews
+    const textSizeSlider = document.querySelector('input[name="text_size"]');
+    const contrastToggle = document.querySelector('input[name="high_contrast"]');
+    const sizeDisplay = textSizeSlider ? textSizeSlider.nextElementSibling : null;
+
+    if (textSizeSlider) {
+        textSizeSlider.addEventListener('input', function() {
+            const size = this.value;
+            if (sizeDisplay) sizeDisplay.textContent = size + '%';
+            document.body.style.fontSize = (size / 100) + 'rem';
+        });
+    }
+
+    if (contrastToggle) {
+        contrastToggle.addEventListener('change', function() {
+            document.body.style.filter = this.checked ? 'contrast(1.2)' : 'none';
+        });
+    }
+</script>
 @endsection

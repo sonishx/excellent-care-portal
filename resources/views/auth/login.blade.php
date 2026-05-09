@@ -376,5 +376,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating Chatbot Component -->
+    <x-chatbot />
 </body>
 </html>

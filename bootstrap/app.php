@@ -12,6 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
+            'verified' => \App\Http\Middleware\EnsureEmailIsVerifiedUnlessAdmin::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'caregiver' => \App\Http\Middleware\CaregiverMiddleware::class,
             'clinician' => \App\Http\Middleware\ClinicianMiddleware::class,

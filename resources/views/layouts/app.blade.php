@@ -278,9 +278,12 @@
             <a href="{{ route('dashboard') }}" class="@if(request()->routeIs('dashboard')) active @endif">Dashboard</a>
             
             @auth
+                {{-- Caregiver and Admin --}}
+                @if(in_array(strtolower(auth()->user()->role), ['caregiver', 'admin']))
+                    <a href="{{ route('patients') }}" class="@if(request()->routeIs('patients*')) active @endif">Patients</a>
+                @endif
                 {{-- Caregiver Only --}}
                 @if(strtolower(auth()->user()->role) === 'caregiver')
-                    <a href="{{ route('patients') }}" class="@if(request()->routeIs('patients*')) active @endif">Patients</a>
                     <a href="{{ route('careplans.select') }}" class="@if(request()->routeIs('careplans.select')) active @endif">Care Plans</a>
                 @endif
             @endauth

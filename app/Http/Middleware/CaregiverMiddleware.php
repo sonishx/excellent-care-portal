@@ -9,7 +9,7 @@ class CaregiverMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && strtolower(auth()->user()->role) === 'caregiver') {
+        if (auth()->check() && in_array(strtolower(auth()->user()->role), ['caregiver', 'admin'])) {
             return $next($request);
         }
 
